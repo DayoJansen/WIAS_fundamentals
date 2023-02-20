@@ -54,6 +54,7 @@ for(point_f in unique(multilateration_dets$point)){
         ## Get estimated values
         multilateration_est <- data.frame(point = point_f,
                                           tag = tag_f,
+                                          description = multilateration_dets_point_tag$description[1],
                                           x = multilateration_dets_point_tag$x[1],
                                           y = multilateration_dets_point_tag$y[1],
                                           x_est = as.numeric(coef(nls_mod)[1]),

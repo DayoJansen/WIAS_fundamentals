@@ -2,7 +2,7 @@
 title: "WIAS Fundaments of Animal Tracking"
 subtitle: "Day 2: Practical Demonstration with automated radio telemetry"
 output: html_document
-date: "2023-02-13"
+date: "2023-02-22"
 ---
 
 ```{r setup, include=FALSE}
@@ -16,7 +16,7 @@ File > New Project > Version Control > Git and in the Repository URL box, paste:
 
 Choose a subdirectory (folder) where you would like to save these files. Then select 'Open in new session' and lastly click 'Create Project'
 
-You should now have 'cloned' this repository from GitHub to your computer.
+You should now have 'cloned' this repository from GitHub to your computer. Navigate to the folder where you chose to save the files. You should see a new folder 'WIAS_tracking_course' and within this folder are several files and 
 
 ## Data entry
 
@@ -62,7 +62,7 @@ dets_ss_raw <- vroom::vroom(list.files(here::here(),
 
 ```
 
-Then proceed through the rest of the code, checking out the structure of the data, taking note of the number of detections that are retained at each step. Ultimately, save the filtered detections and then open up 'model_rss_dst.R' and wait for the other groups.
+Then proceed through the rest of the code, checking out the structure of the data, taking note of the number of detections that are retained at each step. Ultimately, save the filtered detections and then open up 'model_rss_dst.R' and proceed.
 
 
 ## Modeling the RSS~distance relationship
@@ -91,7 +91,7 @@ ggplot(model_data,
   labs(x = "Distance", y = "RSS")
 ```
 
-Finish running through the end of the script to save the model. When you are done, open the R script 'filter_detections.R' and wait for the rest of the class.
+Finish running through the end of the script to save the model. When you are done, open the R script 'filter_detections.R' and proceed.
 
 ## Filter detections
 
@@ -138,9 +138,9 @@ Finish running the code in this script to save the processed detections. When yo
 
 ## Localize detections
 
-Finally, we are ready to localize the detections from our test points. In this script, we will use multilateration to estimate the locations of the tag at each test point based on the mean RSS registered from each receiver. This script takes the processed detections we just finished creating and then uses a for-loop to iteratively subset the data by each test point (and tag if multiple tags were used) and use nonlinear least squares test to the estimate the location of the tag given the locations of the receivers that detected the node and the estimated distance between the tag and each receiver. The results from this model gives the estimated location of the tag, which can then be compared to the known location of the tag to estimate the error. For this script, simply highlight everything and hit run. This will go through each test point and estimate the location of the tag(s) detections at that point. Well done! You now have location estimates for the test points.
+Finally, we are ready to localize the detections from our test points. In this script, we will use multilateration to estimate the locations of the tag at each test point based on the mean RSS registered from each receiver. This script takes the processed detections we just finished creating and then uses a for-loop to iteratively subset the data by each test point (and tag if multiple tags were used) and use nonlinear least squares test to the estimate the location of the tag given the locations of the receivers that detected the node and the estimated distance between the tag and each receiver. The results from this model gives the estimated location of the tag, which can then be compared to the known location of the tag to estimate the error. For this script, simply highlight everything and hit run. This will go through each test point and estimate the location of the tag(s) detections at that point. Well done! You now have location estimates for the test points. When you are done with this section, open the R script 
 
-
+## Analylzing and plotting localization
 
 
 
