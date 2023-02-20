@@ -35,19 +35,19 @@ for(point_f in unique(multilateration_dets$point)){
         max_rssi <- multilateration_dets_point_tag[which.max(multilateration_dets_point_tag$mean_rssi),]
         
         # Non-linear test to optimize the location of unknown signal by looking at the radius around each Node based on RSSI values (distance) and the pairwise distance between all nodes
-        nls_mod <- suppressWarnings(nls(distance ~ geosphere::distm(data.frame(node_x, node_y),
+        nls_mod <- suppressWarnings(nls(distance ~ geosphere::distm(data.frame(grid_point_x, grid_point_y),
                                                                     c(x_solution, y_solution),
                                                                     fun = distHaversine), 
                                         data = multilateration_dets_point_tag,
-                                        start = list(x_solution = max_rssi$node_x,
-                                                     y_solution = max_rssi$node_y),
+                                        start = list(x_solution = max_rssi$grid_point_x,
+                                                     y_solution = max_rssi$grid_point_y),
                                         control = nls.control(warnOnly = T,
                                                               minFactor=1/30000)))
         
         
         ## Distance between estimated location and actual location
-        est_error <- as.numeric(geosphere::distm(data.frame(multilateration_dets_point_tag$x[1], 
-                                                            multilateration_dets_point_tag$y[1]),
+        est_error <- as.numeric(geosphere::distm(data.frame(multilateration_dets_point_tag$test_x[1], 
+                                                            multilateration_dets_point_tag$test_y[1]),
                                                  c(coef(nls_mod)[1], 
                                                    coef(nls_mod)[2])))
         
@@ -55,8 +55,8 @@ for(point_f in unique(multilateration_dets$point)){
         multilateration_est <- data.frame(point = point_f,
                                           tag = tag_f,
                                           description = multilateration_dets_point_tag$description[1],
-                                          x = multilateration_dets_point_tag$x[1],
-                                          y = multilateration_dets_point_tag$y[1],
+                                          x = multilateration_dets_point_tag$test_x[1],
+                                          y = multilateration_dets_point_tag$test_y[1],
                                           x_est = as.numeric(coef(nls_mod)[1]),
                                           y_est = as.numeric(coef(nls_mod)[2]),
                                           error = est_error)
@@ -82,4 +82,4 @@ close(pb)
 nrow(localization_estimates)
 
 ## Save
-readr::write_csv(localization_estimates, "./processed_data/detections/localization_estimates.csv")
+readr::write_csv(localization_estimates, "./processed_data/localization_estimates.csv")

@@ -5,15 +5,17 @@ library(tidyverse)
 library(lubridate)
 
 ## Get range test detections #####
+dets_f <- readRDS("./processed_data/detections/detections_raw.RDS")
 
 ## Range test log
-range_log <- readxl::read_xlsx("./data/calibration/rssi_dist_curve/rssi_distance_calibration_log.xlsx") %>%
+range_log <- readxl::read_xlsx("./field_data/rss_distance_test/rssi_distance_calibration_log.xlsx") %>%
   dplyr::transmute(distance,
-                   time_start = lubridate::dmy_hm(paste(date, time_start),
+                   time_start = lubridate::ymd_hm(paste(date, time_start),
                                                   tz = "Europe/Amsterdam"),
-                   time_end = lubridate::dmy_hm(paste(date, time_end),
+                   time_end = lubridate::ymd_hm(paste(date, time_end),
                                                 tz = "Europe/Amsterdam"),
-                   interval = lubridate::interval(time_start, time_end))
+                   interval = lubridate::interval(time_start, time_end)) %>% 
+  na.omit()
 
 ## Test nodes and tags
 range_test_nodes <- readxl::read_xlsx("./field_data/rss_distance_test/rssi_distance_calibration_nodes.xlsx") %>%
@@ -66,6 +68,11 @@ range_test_dets_j <- data.table::foverlaps(x = dets_f,
                 rssi,
                 date_time = i.date_time) %>%
   dplyr::mutate(distance = as.numeric(distance))
+
+## Plot the raw data. What do you notice?
+ggplot(range_test_dets_j) +
+  geom_point(aes(x = distance,
+                 y = rssi))
 
 ## Model
 log_dist_RSSI_mdl <- lm(log10(distance) ~ rssi, 

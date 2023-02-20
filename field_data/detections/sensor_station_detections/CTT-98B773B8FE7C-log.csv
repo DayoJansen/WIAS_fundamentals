@@ -1,0 +1,34 @@
+msg at,msg
+2023-02-17 11:57:18,recording GPS fix
+2023-02-17 11:57:18,rotation finished
+2023-02-17 12:07:18,alive
+2023-02-17 12:12:19,recording GPS fix
+2023-02-17 12:17:19,alive
+2023-02-17 12:27:19,alive
+2023-02-17 12:27:19,recording GPS fix
+2023-02-17 12:30:37,client connected from IP: ::ffff:169.254.19.21
+2023-02-17 12:37:19,alive
+2000-01-01 00:01:25,initializing base station
+2000-01-01 00:01:25,starting radio receivers
+2000-01-01 00:01:26,opened radio on port,1
+2000-01-01 00:01:26,opened radio on port,2
+2000-01-01 00:01:26,opened radio on port,4
+2000-01-01 00:01:26,opened radio on port,3
+2000-01-01 00:01:27,radio error on channel 5;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.3.4:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 6;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.4.4:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 7;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.4.3:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 8;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.4.2:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 9;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.4.1:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 10;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.1:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 11;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.2.3:1.0[object Object]
+2000-01-01 00:01:27,radio error on channel 12;  Error: Error: No such file or directory, cannot open /dev/serial/by-path/platform-3f980000.usb-usb-0:1.2.4:1.0[object Object]
+2000-01-01 00:01:27,writing message to radio 1: preset:node3
+2000-01-01 00:01:27,writing message to radio 2: preset:node3
+2000-01-01 00:01:27,writing message to radio 4: preset:fsktag
+2000-01-01 00:01:27,writing message to radio 3: preset:node3
+2000-01-01 00:01:35,server checkin initiated
+2000-01-01 00:01:36,no internet - ignoring server checkin
+2000-01-01 00:05:10,client connected from IP: ::ffff:169.254.253.32
+2000-01-01 00:11:26,alive
+2000-01-01 00:16:26,recording GPS fix
+2000-01-01 00:21:26,alive

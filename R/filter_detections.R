@@ -11,7 +11,7 @@ tags <- readxl::read_excel("./field_data/group_tests/group_tests_tags.xlsx") %>%
   pull(tag)
 
 ## Nodes
-test_nodes <- readxl::read_xlsx("./field_data/group_tests/group_tests_nodes.xlsx")
+test_nodes <- readxl::read_xlsx("./field_data/grid_points/grid_points.xlsx")
 
 ## Filter dets based on tags in the calibration test and deployed nodes
 dets_f <- dets %>% 
@@ -22,9 +22,10 @@ dets_f <- dets %>%
 field_log_intervals <- readxl::read_excel("./field_data/group_tests/group_tests_log.xlsx") %>% 
   transmute(point,
             description,
-            start_time = lubridate::dmy_hm(paste(date, time_start), tz = "Europe/Amsterdam"),
-            end_time = lubridate::dmy_hm(paste(date, time_end), tz = "Europe/Amsterdam"),
-            interval = lubridate::interval(time_start, time_end)) 
+            time_start = lubridate::ymd_hm(paste(date, time_start), tz = "Europe/Amsterdam"),
+            time_end = lubridate::ymd_hm(paste(date, time_end), tz = "Europe/Amsterdam"),
+            interval = lubridate::interval(time_start, time_end)) %>% 
+  na.omit()
 
 ## Intervals 
 test_intervals <- as.list(field_log_intervals$interval)
@@ -60,16 +61,13 @@ field_cal_dets <- data.table::foverlaps(x = dets_f,
                 node,
                 tag,
                 rssi,
-                date_time = i.date_time) %>%
-  dplyr::mutate(distance = as.numeric(distance))
+                date_time = i.date_time)
 
-## Add in grid point name from node file
-test_nodes <- readxl::read_xlsx("./field_data/group_tests/group_tests_nodes.xlsx")
 
-## Join
+## Join grid point name from node file
 field_cal_dets <- field_cal_dets %>% 
   left_join(test_nodes, by = "node") %>% 
-  select(-node)
+  select(point, description, grid_point, tag, date_time, rssi)
 
 ## Summarize detections: Number of detections, mean RSS value, and sd RSSI value for each tag and each point
 det_sum <- field_cal_dets %>% 
