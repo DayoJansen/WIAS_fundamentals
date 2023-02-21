@@ -1,7 +1,8 @@
 ## Script to aggregate all detections
 
 ## Houskeeping ########
-packages_needed <- c("tidyverse","vroom","lubridate","sf", "data.table", "readxl", "geosphere") 
+packages_needed <- c("tidyverse","vroom","lubridate","sf", "data.table", 
+                     "readxl", "geosphere", "here") 
 new_packages <- packages_needed[!(packages_needed %in% 
                                     installed.packages()[,"Package"])]
 
@@ -10,7 +11,8 @@ if(length(new_packages)){
 } 
 
 # Now load all packages
-library(tidyverse); library(lubridate); library(vroom); library(data.table); library(readxl); library(geosphere)
+library(tidyverse); library(lubridate); library(vroom); library(data.table); 
+library(readxl); library(geosphere)
 
 ## Detections from Sensor Station
 dets_ss_raw <- vroom::vroom(list.files(here::here("./field_data/detections/sensor_station_detections/"),
